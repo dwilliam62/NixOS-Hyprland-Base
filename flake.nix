@@ -89,6 +89,7 @@
                 imports = [
                   ./modules/home/tmux.nix
                   ./modules/home/kitty.nix
+                  ./modules/home/remmina.nix
                   ./modules/home/wezterm.nix
                   ./modules/home/yazi/yazi-import.nix
                   ./modules/home/editors/doom-emacs-install.nix

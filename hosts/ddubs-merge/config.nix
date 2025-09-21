@@ -145,15 +145,8 @@ in
       };
     };
 
-    greetd = {
-      enable = true;
-      settings = {
-        default_session = {
-          user = username;
-          command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd Hyprland"; # start Hyprland with a TUI login manager
-        };
-      };
-    };
+    # Switch from greetd/tuigreet to ly (TUI login manager)
+    displayManager.ly.enable = true;
 
     smartd = {
       enable = false;
@@ -325,6 +318,15 @@ in
   hardware.graphics = {
     enable = true;
   };
+
+  # Optional: ly configuration (Matrix background effect)
+  # If your Nixpkgs ly module already exposes a settings option, we can use that instead.
+  # For broad compatibility, provide a minimal config.ini overriding only the animation.
+  environment.etc."ly/config.ini".text = ''
+[main]
+# Enable Matrix-style background animation
+animation = matrix
+'';
 
   console.keyMap = "${keyboardLayout}";
 
