@@ -51,13 +51,13 @@
   environment.systemPackages = with pkgs; [
 
     # Update flkake script
-    (pkgs.writeShellScriptBin "fupdate" ''
+    (pkgs.writeShellScriptBin "update" ''
       cd ~/NixOS-Hyprland
       nh os switch -u -H ${host} .
     '')
 
     # Rebuild flkake script
-    (pkgs.writeShellScriptBin "frebuild" ''
+    (pkgs.writeShellScriptBin "rebuild" ''
       cd ~/NixOS-Hyprland
       nh os switch -H ${host} .
     '')
@@ -210,6 +210,11 @@
     mission-center
     neofetch
 
+    # AI
+    warp-terminal
+    gemini-cli
+    #opencode
+
     # Development related
     luarocks
     nh
@@ -229,6 +234,9 @@
     # Terminals
     kitty
     wezterm
+    ptyxis
+    remmina 
+
 
   ];
 
