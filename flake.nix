@@ -91,6 +91,7 @@
                   ./modules/home/tmux.nix
                   ./modules/home/kitty.nix
                   ./modules/home/wezterm.nix
+                  ./modules/home/evil-helix.nix
                 ];
 
                 # Leave zsh in NixOS; HM will manage user-level tools progressively
