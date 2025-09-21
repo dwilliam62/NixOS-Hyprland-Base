@@ -93,7 +93,9 @@
                   ./modules/home/wezterm.nix
                   ./modules/home/evil-helix.nix
                   ./modules/home/yazi/yazi-import.nix
-                  ./modules/home/cli/bottom.nix
+                  ./modules/home/editors/doom-emacs-install.nix
+                  ./modules/home/editors/doom-emacs.nix
+                ];
                   ./modules/home/cli/bat.nix
                   ./modules/home/cli/cava.nix
                   ./modules/home/cli/tealdeer.nix
