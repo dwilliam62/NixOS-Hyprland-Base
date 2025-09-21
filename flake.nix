@@ -88,7 +88,9 @@
 
                 # Import your copied HM modules
                 imports = [
-                  ./modules/tmux.nix
+                  ./modules/home/tmux.nix
+                  ./modules/home/kitty.nix
+                  ./modules/home/wezterm.nix
                 ];
 
                 # Leave zsh in NixOS; HM will manage user-level tools progressively
