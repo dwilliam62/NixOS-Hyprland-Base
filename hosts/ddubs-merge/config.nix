@@ -150,10 +150,9 @@ in
     displayManager.ly = {
       enable = true;
       # Configure ly via its module to avoid environment.etc conflicts
+      # Use flat INI keys as required by the module (no nested sections)
       settings = {
-        main = {
-          animation = "matrix"; # Matrix-style background effect
-        };
+        "main.animation" = "matrix"; # Matrix-style background effect
       };
     };
 
