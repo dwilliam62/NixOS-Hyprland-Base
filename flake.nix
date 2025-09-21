@@ -31,7 +31,7 @@
     }:
     let
       system = "x86_64-linux";
-      host = "default";
+      host = "ddubs-merge";
       username = "dwilliams";
 
       pkgs = import nixpkgs {
