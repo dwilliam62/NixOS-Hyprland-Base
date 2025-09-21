@@ -73,6 +73,7 @@
             ./modules/fonts.nix # Fonts packages
             ./modules/portals.nix # portal
             ./modules/theme.nix # Set dark theme
+            ./modules/ly.nix # Centralized ly display manager config
 
             # Integrate Home Manager as a NixOS module
             inputs.home-manager.nixosModules.home-manager
