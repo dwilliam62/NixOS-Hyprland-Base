@@ -213,9 +213,11 @@
     # Development related
     luarocks
     nh
+    lunarvim
 
     # Internet
     discord
+    discord-canary
 
     # Virtuaizaiton
     virt-viewer
