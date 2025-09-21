@@ -172,6 +172,7 @@
 
     (inputs.quickshell.packages.${pkgs.system}.default)
     (inputs.ags.packages.${pkgs.system}.default)
+    (inputs.ghostty.packages.${pkgs.system}.default)
 
     # Utils
     caligula # burn ISOs at cli FAST

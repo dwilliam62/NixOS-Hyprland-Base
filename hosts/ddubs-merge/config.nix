@@ -69,20 +69,7 @@ in
       canTouchEfiVariables = true;
     };
 
-    loader.timeout = 5;
-
-    # Bootloader GRUB
-    #loader.grub = {
-    #enable = true;
-    #  devices = [ "nodev" ];
-    #  efiSupport = true;
-    #  gfxmodeBios = "auto";
-    #  memtest86.enable = true;
-    #  extraGrubInstallArgs = [ "--bootloader-id=${host}" ];
-    #  configurationName = "${host}";
-    #	 };
-
-    # Bootloader GRUB theme, configure below
+    loader.timeout = 7;
 
     ## -end of BOOTLOADERS----- ##
 
@@ -102,19 +89,14 @@ in
       magicOrExtension = ''\x7fELF....AI\x02'';
     };
 
-    plymouth.enable = true;
+    plymouth.enable = false;
   };
 
-  # GRUB Bootloader theme. Of course you need to enable GRUB above.. duh! and also, enable it on flake.nix
-  #distro-grub-themes = {
-  #  enable = true;
-  #  theme = "nixos";
-  #};
 
   # Extra Module Options
   drivers = {
-    amdgpu.enable = true;
-    intel.enable = true;
+    amdgpu.enable = false;
+    intel.enable = false;
     nvidia.enable = false;
     nvidia-prime = {
       enable = false;
@@ -122,7 +104,7 @@ in
       nvidiaBusID = "";
     };
   };
-  vm.guest-services.enable = false;
+  vm.guest-services.enable = true;
   local.hardware-clock.enable = false;
 
   # networking
@@ -233,13 +215,6 @@ in
 
     #ipp-usb.enable = true;
 
-    #syncthing = {
-    #  enable = false;
-    #  user = "${username}";
-    #  dataDir = "/home/${username}";
-    #  configDir = "/home/${username}/.config/syncthing";
-    #};
-
   };
 
   systemd.services.flatpak-repo = {
@@ -335,6 +310,8 @@ in
       options = "--delete-older-than 7d";
     };
   };
+
+  security.sudo.wheelNeedsPassword = false; 
 
   # Virtualization / Containers
   virtualisation.libvirtd.enable = false;
