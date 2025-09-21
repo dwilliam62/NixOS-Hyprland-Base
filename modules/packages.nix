@@ -236,7 +236,7 @@
     kitty
     wezterm
     ptyxis
-    #remmina 
+    remmina 
 
 
   ];
