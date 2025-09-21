@@ -8,6 +8,9 @@
     #hyprland.url = "github:hyprwm/Hyprland"; # hyprland development
     #distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes";
 
+    # Home Manager
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     ghostty = {
       type = "github";
@@ -71,6 +74,26 @@
             ./modules/fonts.nix # Fonts packages
             ./modules/portals.nix # portal
             ./modules/theme.nix # Set dark theme
+
+            # Integrate Home Manager as a NixOS module
+            inputs.home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+
+              home-manager.users.${username} = {
+                home.username = username;
+                home.homeDirectory = "/home/${username}";
+                home.stateVersion = "24.05";
+
+                # Import your copied HM modules
+                imports = [
+                  ./modules/tmux.nix
+                ];
+
+                # Leave zsh in NixOS; HM will manage user-level tools progressively
+              };
+            }
           ];
         };
       };
