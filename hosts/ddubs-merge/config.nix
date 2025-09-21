@@ -147,7 +147,15 @@ in
     };
 
     # Switch from greetd/tuigreet to ly (TUI login manager)
-    displayManager.ly.enable = lib.mkForce true;
+    displayManager.ly = {
+      enable = true;
+      # Configure ly via its module to avoid environment.etc conflicts
+      settings = {
+        main = {
+          animation = "matrix"; # Matrix-style background effect
+        };
+      };
+    };
 
     smartd = {
       enable = false;
@@ -320,14 +328,6 @@ in
     enable = true;
   };
 
-  # Optional: ly configuration (Matrix background effect)
-  # If your Nixpkgs ly module already exposes a settings option, we can use that instead.
-  # For broad compatibility, provide a minimal config.ini overriding only the animation.
-  environment.etc."ly/config.ini".text = ''
-[main]
-# Enable Matrix-style background animation
-animation = matrix
-'';
 
   console.keyMap = "${keyboardLayout}";
 
