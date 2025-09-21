@@ -93,15 +93,14 @@
                   ./modules/home/wezterm.nix
                   ./modules/home/evil-helix.nix
                   ./modules/home/yazi/yazi-import.nix
-                ];
                   ./modules/home/cli/bottom.nix
+                  ./modules/home/cli/bat.nix
                   ./modules/home/cli/cava.nix
                   ./modules/home/cli/tealdeer.nix
                   ./modules/home/cli/htop.nix
                   ./modules/home/shells/eza.nix
-                  #./modules/home/shells/fish.nix
+                  ./modules/home/shells/fish.nix
                   ./modules/home/shells/zoxide.nix
-
                 ];
 
                 # Leave zsh in NixOS; HM will manage user-level tools progressively
