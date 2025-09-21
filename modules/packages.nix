@@ -161,7 +161,7 @@
     libsForQt5.qtstyleplugin-kvantum # kvantum
     libsForQt5.qt5ct
     (mpv.override { scripts = [ mpvScripts.mpris ]; }) # with tray
-    #nvtopPackages.full
+    nvtopPackages.full
     openssl # required by Rainbow borders
     pciutils
     networkmanagerapplet
@@ -172,10 +172,10 @@
     #polkit
     # polkit_gnome
     kdePackages.polkit-kde-agent-1
-    # qt6ct
-    #qt6.qtwayland
-    #qt6Packages.qtstyleplugin-kvantum # kvantum
-    # gsettings-qt
+    qt6ct
+    qt6.qtwayland
+    qt6Packages.qtstyleplugin-kvantum # kvantum
+     gsettings-qt
     rofi
     slurp
     swappy
