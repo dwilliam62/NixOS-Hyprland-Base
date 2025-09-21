@@ -97,6 +97,9 @@
                   ./modules/home/cli/cava.nix
                   ./modules/home/cli/tealdeer.nix
                   ./modules/home/cli/htop.nix
+                  ./modules/home/shells/eza.nix
+                  ./modules/home/shells/fish.nix
+                  ./modules/home/shells/zoxide.nix
 
                 ];
 
