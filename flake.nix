@@ -22,6 +22,12 @@
       ref = "v1";
     };
 
+    wfetch = {
+      type = "github";
+      owner = "iynaix";
+      repo = "wfetch";
+    };
+
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
