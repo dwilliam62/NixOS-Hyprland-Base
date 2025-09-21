@@ -17,7 +17,6 @@
       xwayland.enable = true;
     };
     zsh.enable = true;
-    zsh.ohMyZsh.enable = true;
     firefox.enable = false;
     waybar.enable = true;
     hyprlock.enable = true;

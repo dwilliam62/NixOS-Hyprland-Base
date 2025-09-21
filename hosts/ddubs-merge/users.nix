@@ -40,7 +40,7 @@ in
       ohMyZsh = {
         enable = true;
         theme = "agnoster";
-        plugins = [ "git" ];
+        plugins = [ "git" "zsh-autosuggestions" "zsh-syntax-highlighting" ];
       };
     };
   };
