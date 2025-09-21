@@ -17,7 +17,8 @@
       xwayland.enable = true;
     };
     zsh.enable = true;
-    firefox.enable = true;
+    zsh.ohMyZsh.enable = true;
+    firefox.enable = false;
     waybar.enable = true;
     hyprlock.enable = true;
     dconf.enable = true;
@@ -137,12 +138,11 @@
     libsForQt5.qtstyleplugin-kvantum # kvantum
     libsForQt5.qt5ct
     (mpv.override { scripts = [ mpvScripts.mpris ]; }) # with tray
-    nvtopPackages.full
+    #nvtopPackages.full
     openssl # required by Rainbow borders
     pciutils
     networkmanagerapplet
-    #nitrogen
-    #nvtopPackages.full
+    nitrogen
     pamixer
     pavucontrol
     playerctl
@@ -230,12 +230,13 @@
 
     # Video
     vlc
+    #jellyfin-media-player
 
     # Terminals
     kitty
     wezterm
     ptyxis
-    remmina 
+    #remmina 
 
 
   ];
