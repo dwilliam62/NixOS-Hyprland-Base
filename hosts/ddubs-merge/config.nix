@@ -3,6 +3,7 @@
 
 {
   pkgs,
+  lib,
   host,
   username,
   options,
@@ -146,7 +147,7 @@ in
     };
 
     # Switch from greetd/tuigreet to ly (TUI login manager)
-    displayManager.ly.enable = true;
+    displayManager.ly.enable = lib.mkForce true;
 
     smartd = {
       enable = false;
