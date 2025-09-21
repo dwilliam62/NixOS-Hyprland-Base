@@ -34,7 +34,7 @@
           type = "command";
           key = " ├  ddubsOS ";
           keyColor = "31";
-          text = "echo v$" + "{DDUBSOS_VERSION}";
+          text = "echo $" + "{DDUBSOS_VERSION}";
         }
         {
           type = "kernel";

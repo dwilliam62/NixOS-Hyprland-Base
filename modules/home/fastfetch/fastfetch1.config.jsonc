@@ -28,7 +28,7 @@
       "type": "command",
       "key": "├ ddubsOS",
       "keyColor": "yellow",
-      "text": "echo v${DDUBSOS_VERSION}"
+      "text": "echo ${DDUBSOS_VERSION}"
     },
     {
       "type": "kernel",

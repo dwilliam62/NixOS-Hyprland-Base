@@ -84,7 +84,7 @@ fi
 echo "-----"
 
 echo "$NOTE Cloning & Entering NixOS-Hyprland Repository"
-git clone --depth 1 https://github.com/JaKooLit/NixOS-Hyprland.git ~/NixOS-Hyprland
+git clone --depth 1 https://github.cow/dwilliam62/NixOS-Hyprland.git -b ddubs-merge ~/NixOS-Hyprland
 cd ~/NixOS-Hyprland || exit
 
 printf "\n%.0s" {1..2}

@@ -264,7 +264,7 @@
 
   environment.variables = {
     NIXOS_OZONE_WL = "1";
-    DDUBSOS_VERSION = "NixOS-0.4";
+    DDUBSOS_VERSION = "JAK-v0.4";
     DDUBSOS = "true";
   };
 }
