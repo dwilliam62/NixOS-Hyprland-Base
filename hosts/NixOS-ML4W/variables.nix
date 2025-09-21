@@ -4,11 +4,12 @@
 {
   # Git Configuration ( For Pulling Software Repos )
   gitUsername = "Don Williams";
-  gitEmail = "don.e.williams@gmail.com";
+  gitEmail = "Don.E.Williams@gmail.com";
 
   # Hyprland Settings
-  extraMonitorSettings = "
-  monitor=Virtual-1,1920x1080@60,auto,1
+  extraMonitorSettings ="
+
+  monitor=Virtual-1,1920x1080@60,auto,auto
   ";
 
   # Waybar Settings
