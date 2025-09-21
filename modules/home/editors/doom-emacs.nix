@@ -60,8 +60,11 @@
         exit 1
       fi
 
-      # Non-interactive upgrade and sync
-      "$EMACSDIR/bin/doom" upgrade --no-prompt || true
+      # Update Doom repo non-interactively, then sync packages
+      if command -v git >/dev/null 2>&1; then
+        git -C "$EMACSDIR" fetch --all -p || true
+        git -C "$EMACSDIR" pull --ff-only || true
+      fi
       "$EMACSDIR/bin/doom" sync -u || true
       echo "doom-update: complete"
     '')
