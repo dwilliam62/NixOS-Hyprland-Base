@@ -92,6 +92,12 @@
                   ./modules/home/kitty.nix
                   ./modules/home/wezterm.nix
                   ./modules/home/evil-helix.nix
+                  ./modules/home/cli/bat.nix
+                  ./modules/home/cli/bottom.nix
+                  ./modules/home/cli/cava.nix
+                  ./modules/home/cli/tealdeer.nix
+                  ./modules/home/cli/htop.nix
+
                 ];
 
                 # Leave zsh in NixOS; HM will manage user-level tools progressively
