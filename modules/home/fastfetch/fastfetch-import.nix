@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   programs.fastfetch = {
     enable = true;
@@ -164,4 +165,13 @@
       source = ./nixos.png;
     };
   };
+
+  # Provide helper wrappers: ff, ff1, ff2
+  # These are small scripts built from neighboring nix expressions
+  # and installed via home.packages.
+  home.packages = [
+    (import ./ff.nix { inherit pkgs; })
+    (import ./ff1.nix { inherit pkgs; })
+    (import ./ff2.nix { inherit pkgs; })
+  ];
 }

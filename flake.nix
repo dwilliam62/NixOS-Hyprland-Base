@@ -99,9 +99,6 @@
                   ./modules/home/cli/tealdeer.nix
                   ./modules/home/cli/htop.nix
                   ./modules/home/fastfetch/fastfetch-import.nix
-                  ./modules/home/fastfetch/ff.nix
-                  ./modules/home/fastfetch/ff1.nix
-                  ./modules/home/fastfetch/ff2.nix
                   ./modules/home/shells/eza.nix
                   ./modules/home/shells/fish.nix
                   ./modules/home/shells/zoxide.nix
