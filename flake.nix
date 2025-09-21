@@ -92,7 +92,8 @@
                   ./modules/home/kitty.nix
                   ./modules/home/wezterm.nix
                   ./modules/home/evil-helix.nix
-                  ./modules/home/cli/bat.nix
+                  ./modules/home/yazi/yazi-import.nix
+                ];
                   ./modules/home/cli/bottom.nix
                   ./modules/home/cli/cava.nix
                   ./modules/home/cli/tealdeer.nix
