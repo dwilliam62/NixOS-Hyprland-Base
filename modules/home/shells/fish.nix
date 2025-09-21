@@ -1,12 +1,11 @@
-{ profile
-, lib
-, ...
-}: {
+{ lib, ... }:
+{
   programs.fish = {
     enable = true;
     shellAliases = {
-      fr = "nh os switch --hostname ${profile}";
-      fu = "nh os switch --hostname ${profile} --update";
+      # Use current hostname at runtime to avoid build-time variables
+      fr = "nh os switch --hostname (hostname)";
+      fu = "nh os switch --hostname (hostname) --update";
       ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
       #zu = "sh <(curl -L https://gitlab.com/Zaney/zaneyos/-/raw/main/install-zaneyos.sh)";
       grep = "ugrep --color=auto";

@@ -1,10 +1,13 @@
-{host, ...}: let
-  inherit (import ../../../hosts/${host}/variables.nix) gitUsername gitEmail;
-in {
+{ ... }:
+{
   programs.git = {
     enable = true;
-    userName = "${gitUsername}";
-    userEmail = "${gitEmail}";
+
+    # If you want to set identity per-host, you can do it in a small overlay
+    # or via host variables. Leaving these unset keeps git functional and avoids
+    # a build-time dependency on external variables.
+    # userName = "Your Name";
+    # userEmail = "you@example.com";
 
     delta = {
       enable = true;
