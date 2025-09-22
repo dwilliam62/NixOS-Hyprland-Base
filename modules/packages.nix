@@ -18,7 +18,7 @@
     };
     zsh.enable = true;
     firefox.enable = false;
-    waybar.enable = true;
+    waybar.enable = false; # disable systemd user autostart; Hyprland will start Waybar
     hyprlock.enable = true;
     dconf.enable = true;
     seahorse.enable = true;
@@ -49,6 +49,7 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    waybar
 
     # Update flkake script
     (pkgs.writeShellScriptBin "update" ''
