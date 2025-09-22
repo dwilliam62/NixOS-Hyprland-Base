@@ -47,7 +47,7 @@
     }:
     let
       system = "x86_64-linux";
-      host = "ddubs-merge";
+      host = "nixos-test";
       username = "dwilliams";
 
       pkgs = import nixpkgs {
@@ -88,10 +88,10 @@
 
                 # Import your copied HM modules
                 imports = [
-                  ./modules/home/tmux.nix
-                  ./modules/home/kitty.nix
-                  ./modules/home/remmina.nix
-                  ./modules/home/wezterm.nix
+                  ./modules/home/terminals/tmux.nix
+                  ./modules/home/terminals/kitty.nix
+                  ./modules/home/terminals/remmina.nix
+                  ./modules/home/terminals/wezterm.nix
                   ./modules/home/yazi/yazi-import.nix
                   ./modules/home/editors/doom-emacs-install.nix
                   ./modules/home/editors/doom-emacs.nix

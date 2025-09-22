@@ -5,7 +5,7 @@
       dejavu_fonts
       fira-code
       fira-code-symbols
-      fira-san
+      fira-sans
       font-awesome
       hackgen-nf-font
       ibm-plex
