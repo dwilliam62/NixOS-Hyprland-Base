@@ -19,11 +19,11 @@ in
     ./hardware.nix
     ./users.nix
     ./packages-fonts.nix
-    ../../modules/amd-drivers.nix
-    ../../modules/nvidia-drivers.nix
-    ../../modules/nvidia-prime-drivers.nix
-    ../../modules/intel-drivers.nix
-    ../../modules/vm-guest-services.nix
+    ../../modules/drivers/amd-drivers.nix
+    ../../modules/drivers/nvidia-drivers.nix
+    ../../modules/drivers/nvidia-prime-drivers.nix
+    ../../modules/drivers/intel-drivers.nix
+    ../../modules/drivers/vm-guest-services.nix
     ../../modules/local-hardware-clock.nix
   ];
 
