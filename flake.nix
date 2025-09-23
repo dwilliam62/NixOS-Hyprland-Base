@@ -4,10 +4,7 @@
   inputs = {
     #nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-
     hyprland.url = "github:hyprwm/Hyprland"; # hyprland development
-    #distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes";
-
     # Home Manager
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -106,7 +103,7 @@
 
                 # Import your copied HM modules
                 imports = [
-                  inputs.catppuccin.homeManagerModules.catppuccin
+                  inputs.catppuccin.homeModules.catppuccin
 
                   ./modules/home/terminals/tmux.nix
                   ./modules/home/terminals/kitty.nix
@@ -117,10 +114,11 @@
                   ./modules/home/editors/doom-emacs.nix
                   ./modules/home/editors/evil-helix.nix
                   ./modules/home/cli/bat.nix
+                  ./modules/home/cli/btop.nix
                   ./modules/home/cli/bottom.nix
                   ./modules/home/cli/cava.nix
                   ./modules/home/cli/htop.nix
-                  #./modules/home/cli/lazygit.nix
+                  modules/home/cli/lazygit.nix
                   ./modules/home/cli/tealdeer.nix
                   ./modules/home/fastfetch/fastfetch-import.nix
                   ./modules/home/shells/eza.nix
