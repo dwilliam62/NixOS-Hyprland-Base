@@ -117,8 +117,9 @@
                   ./modules/home/cli/btop.nix
                   ./modules/home/cli/bottom.nix
                   ./modules/home/cli/cava.nix
+                  ./modules/home/cli/git.nix
                   ./modules/home/cli/htop.nix
-                  modules/home/cli/lazygit.nix
+                  ./modules/home/cli/lazygit.nix
                   ./modules/home/cli/tealdeer.nix
                   ./modules/home/fastfetch/fastfetch-import.nix
                   ./modules/home/shells/eza.nix
