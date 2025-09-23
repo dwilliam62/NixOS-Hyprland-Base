@@ -196,6 +196,7 @@
     (inputs.ags.packages.${pkgs.system}.default)
     (inputs.ghostty.packages.${pkgs.system}.default)
     (inputs.wfetch.packages.${pkgs.system}.default)
+    (inputs.warp-terminal.packages.${pkgs.system}.default)
 
     # Utils
     caligula # burn ISOs at cli FAST

@@ -36,6 +36,22 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Current Warp Terminal - bleeding edge version
+    warp-terminal = {
+      url = "github:dwilliam62/war-terminal/dev";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Nix User Repository (NUR)
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -47,7 +63,7 @@
     }:
     let
       system = "x86_64-linux";
-      host = "nixos-test";
+      host = "ddubs-merge";
       username = "dwilliams";
 
       pkgs = import nixpkgs {
@@ -74,6 +90,7 @@
             ./modules/portals.nix # portal
             ./modules/theme.nix # Set dark theme
             ./modules/ly.nix # Centralized ly display manager config
+            inputs.catppuccin.nixosModules.catppuccin
 
             # Integrate Home Manager as a NixOS module
             inputs.home-manager.nixosModules.home-manager
@@ -97,9 +114,11 @@
                   ./modules/home/editors/doom-emacs.nix
                   ./modules/home/editors/evil-helix.nix
                   ./modules/home/cli/bat.nix
+                  ./modules/home/cli/bottom.nix
                   ./modules/home/cli/cava.nix
-                  ./modules/home/cli/tealdeer.nix
                   ./modules/home/cli/htop.nix
+                  #./modules/home/cli/lazygit.nix
+                  ./modules/home/cli/tealdeer.nix
                   ./modules/home/fastfetch/fastfetch-import.nix
                   ./modules/home/shells/eza.nix
                   ./modules/home/shells/fish.nix
