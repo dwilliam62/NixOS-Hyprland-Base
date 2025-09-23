@@ -28,7 +28,7 @@ SKY_BLUE="$(tput setaf 6)"
 RESET="$(tput sgr0)"
 
 # Set Branch to clone from 
-BRANCH="ddubs-merge"
+BRANCH="stable-jak-0.5"
 
 set -e
 
