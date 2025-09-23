@@ -5,7 +5,7 @@
     #nixpkgs.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    #hyprland.url = "github:hyprwm/Hyprland"; # hyprland development
+    hyprland.url = "github:hyprwm/Hyprland"; # hyprland development
     #distro-grub-themes.url = "github:AdisonCavani/distro-grub-themes";
 
     # Home Manager

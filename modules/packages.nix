@@ -10,10 +10,9 @@
     hyprland = {
       enable = true;
       withUWSM = false;
-      #package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; #hyprland-git
-      #portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland; #xdph-git
-
-      portalPackage = pkgs.xdg-desktop-portal-hyprland; # xdph none git
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; # hyprland from source
+      portalPackage =
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland; # xdph from source
       xwayland.enable = true;
     };
     zsh.enable = true;
@@ -191,6 +190,7 @@
     yad
     yazi
     yt-dlp
+    zellij
 
     (inputs.quickshell.packages.${pkgs.system}.default)
     (inputs.ags.packages.${pkgs.system}.default)
