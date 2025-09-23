@@ -117,6 +117,7 @@
                   ./modules/home/cli/btop.nix
                   ./modules/home/cli/bottom.nix
                   ./modules/home/cli/cava.nix
+                  ./modules/home/cli/fzf.nix
                   ./modules/home/cli/git.nix
                   ./modules/home/cli/htop.nix
                   ./modules/home/cli/lazygit.nix
