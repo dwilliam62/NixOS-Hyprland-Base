@@ -90,6 +90,7 @@
             ./modules/portals.nix # portal
             ./modules/theme.nix # Set dark theme
             ./modules/ly.nix # Centralized ly display manager config
+            ./modules/overlays.nix # Overlay exposing warp-bld wrapper
             inputs.catppuccin.nixosModules.catppuccin
 
             # Integrate Home Manager as a NixOS module
