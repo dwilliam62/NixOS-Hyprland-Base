@@ -106,6 +106,8 @@
 
                 # Import your copied HM modules
                 imports = [
+                  inputs.catppuccin.homeManagerModules.catppuccin
+
                   ./modules/home/terminals/tmux.nix
                   ./modules/home/terminals/kitty.nix
                   ./modules/home/terminals/remmina.nix
