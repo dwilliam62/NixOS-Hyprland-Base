@@ -60,7 +60,7 @@
     }:
     let
       system = "x86_64-linux";
-      host = "macbook";
+      host = "nixos-test";
       username = "dwilliams";
 
       pkgs = import nixpkgs {
