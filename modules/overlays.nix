@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   nixpkgs.overlays = [
-    (final: prev: {
+    (final: prev: rec {
       # Expose Warp Terminal (current/bleeding-edge) via overlay so it inherits nixpkgs config (allowUnfree)
       warp-terminal-current = final.callPackage "${inputs.warp-terminal}/warp/package.nix" {
         waylandSupport = true;
@@ -55,6 +55,67 @@ Name=New Window
 Exec=warp-bld
 EOF
       '';
+      # Allow argtable to configure with newer CMake by declaring policy minimum
+      argtable = prev.argtable.overrideAttrs (old: {
+        cmakeFlags = (old.cmakeFlags or []) ++ [
+          "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
+        ];
+      });
+
+      # Patch ANTLR C++ runtime: add policy flag and bump minimum + force NEW policies
+      antlr4_9 = prev.antlr4_9 // {
+        runtime = prev.antlr4_9.runtime // {
+          cpp = prev.antlr4_9.runtime.cpp.overrideAttrs (old: {
+            cmakeFlags = (old.cmakeFlags or []) ++ [
+              "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
+            ];
+            postPatch = (old.postPatch or "") + ''
+              if [ -f runtime/Cpp/runtime/CMakeLists.txt ]; then
+                sed -i -E 's/cmake_minimum_required\(VERSION [0-9.]+\)/cmake_minimum_required(VERSION 3.5)/' runtime/Cpp/runtime/CMakeLists.txt
+                sed -i -E 's/(cmake_policy\(SET CMP[0-9]+ )OLD/\1NEW/g' runtime/Cpp/runtime/CMakeLists.txt || true
+                sed -i -E 's/(CMAKE_POLICY\(SET CMP[0-9]+ )OLD/\1NEW/g' runtime/Cpp/runtime/CMakeLists.txt || true
+              fi
+              if [ -f runtime/Cpp/CMakeLists.txt ]; then
+                sed -i -E 's/cmake_minimum_required\(VERSION [0-9.]+\)/cmake_minimum_required(VERSION 3.5)/' runtime/Cpp/CMakeLists.txt
+                sed -i -E 's/(cmake_policy\(SET CMP[0-9]+ )OLD/\1NEW/g' runtime/Cpp/CMakeLists.txt || true
+                sed -i -E 's/(CMAKE_POLICY\(SET CMP[0-9]+ )OLD/\1NEW/g' runtime/Cpp/CMakeLists.txt || true
+              fi
+            '';
+          });
+        };
+      };
+
+      # Fix libvdpau-va-gl CMake minimum for modern CMake
+      libvdpau-va-gl = prev.libvdpau-va-gl.overrideAttrs (old: {
+        cmakeFlags = (old.cmakeFlags or []) ++ [
+          "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
+        ];
+        postPatch = (old.postPatch or "") + ''
+          if [ -f CMakeLists.txt ]; then
+            sed -i -E 's/cmake_minimum_required\(VERSION [0-9.]+\)/cmake_minimum_required(VERSION 3.5)/' CMakeLists.txt || true
+          fi
+        '';
+      });
+
+      # Provide a clean cxxopts pkg-config shim and force pamixer to use it
+      cxxoptsPcShim = final.runCommand "cxxopts-pc-shim" {} ''
+        mkdir -p $out/lib/pkgconfig
+        cat > $out/lib/pkgconfig/cxxopts.pc <<'EOF'
+Name: cxxopts
+Description: C++ command line parser headers
+Version: ${final.cxxopts.version}
+Cflags: -I${final.cxxopts}/include
+Libs:
+Requires:
+EOF
+      '';
+
+      pamixer = prev.pamixer.overrideAttrs (old: {
+        nativeBuildInputs = (old.nativeBuildInputs or []) ++ [ final."pkg-config" cxxoptsPcShim ];
+        preConfigure = (old.preConfigure or "") + ''
+          export PKG_CONFIG_PATH=${cxxoptsPcShim}/lib/pkgconfig:"$PKG_CONFIG_PATH"
+        '';
+      });
     })
   ];
 }
