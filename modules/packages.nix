@@ -31,7 +31,7 @@
     tmux.enable = true;
     nm-applet.indicator = true;
     neovim = {
-      enable = true;
+      enable = false;
       defaultEditor = false;
     };
 
