@@ -110,7 +110,7 @@
                   inputs.catppuccin.homeModules.catppuccin
 
                   ./modules/home/terminals/tmux.nix
-                  ./modules/home/terminals/kitty.nix
+                  #./modules/home/terminals/kitty.nix
                   ./modules/home/terminals/remmina.nix
                   ./modules/home/terminals/wezterm.nix
                   ./modules/home/yazi/yazi-import.nix
