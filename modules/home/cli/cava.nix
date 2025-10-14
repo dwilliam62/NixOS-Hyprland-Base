@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ config, lib, ... }: {
   programs.cava = {
     enable = true;
     settings = {
@@ -28,7 +28,7 @@
         #gradient_color_7 = "'#ee99a0'";
         #gradient_color_8 = "'#ed8796'";
         # Dracula
-        gradient = 1;
+        gradient = lib.mkForce "1";
         gradient_color_1 = "'#8BE9FD'";
         gradient_color_2 = "'#9AEDFE'";
         gradient_color_3 = "'#CAA9FA'";
