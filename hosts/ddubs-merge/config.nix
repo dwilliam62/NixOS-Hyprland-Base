@@ -136,6 +136,12 @@ in
     LC_TIME = "en_US.UTF-8";
   };
 
+  # Catppuccin system theme
+  catppuccin = {
+    enable = true;
+    flavor = "mocha";
+  };
+
   # Services to start
   services = {
     xserver = {

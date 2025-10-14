@@ -4,7 +4,11 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+let
+  # Use Stylix palette if present; otherwise fall back to Catppuccin Mocha background
+  notifyBg = lib.attrByPath [ "lib" "stylix" "colors" "base01" ] "1e1e2e" config;
+in {
   # Bring in Nixvim's Home Manager module so programs.nixvim options exist
   imports = [ inputs.nixvim.homeModules.nixvim ];
 
@@ -356,7 +360,7 @@
       -- Notify background using Stylix palette
       local ok, notify = pcall(require, 'notify')
       if ok then
-        notify.setup({ background_colour = "#${config.lib.stylix.colors.base01}" })
+        notify.setup({ background_colour = "#${notifyBg}" })
         vim.notify = notify
       end
 

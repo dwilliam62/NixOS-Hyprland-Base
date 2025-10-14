@@ -97,6 +97,9 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
 
+              # Ensure HM modules can access flake inputs (e.g., inputs.nixvim)
+              home-manager.extraSpecialArgs = { inherit inputs system username host; };
+
               home-manager.users.${username} = {
                 home.username = username;
                 home.homeDirectory = "/home/${username}";
@@ -129,6 +132,12 @@
                   ./modules/home/shells/fish.nix
                   ./modules/home/shells/zoxide.nix
                 ];
+
+                # Global Catppuccin theme for this user via Home Manager
+                catppuccin = {
+                  enable = true;
+                  flavor = "mocha";
+                };
 
                 # Leave zsh in NixOS; HM will manage user-level tools progressively
               };
