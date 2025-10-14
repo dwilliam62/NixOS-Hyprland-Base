@@ -73,7 +73,7 @@
   # Run Emacs as a user daemon and set emacsclient as default editor
   services.emacs = {
     enable = true;
-    defaultEditor = true;
+    defaultEditor = false; # nixvim is the default editor; avoid EDITOR conflicts
     package = pkgs.emacs-pgtk;
   };
 
