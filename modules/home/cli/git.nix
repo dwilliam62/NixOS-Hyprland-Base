@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 {
   programs.git = {
     enable = true;
@@ -16,7 +16,8 @@
         side-by-side = true;
         true-color = "never";
 
-        features = "unobtrusive-line-numbers decorations";
+        # Combine Catppuccin delta theme with our local feature set
+        features = lib.mkForce "catppuccin-mocha unobtrusive-line-numbers decorations";
         unobtrusive-line-numbers = {
           line-numbers = true;
           line-numbers-left-format = "{nm:>4}│";
