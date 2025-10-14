@@ -8,6 +8,7 @@
     # Home Manager
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixvim.url = "github:nix-community/nixvim";
 
     ghostty = {
       type = "github";
@@ -113,6 +114,7 @@
                   ./modules/home/editors/doom-emacs-install.nix
                   ./modules/home/editors/doom-emacs.nix
                   ./modules/home/editors/evil-helix.nix
+                  ./modules/home/editors/nixvim.nix
                   ./modules/home/cli/bat.nix
                   ./modules/home/cli/btop.nix
                   ./modules/home/cli/bottom.nix
