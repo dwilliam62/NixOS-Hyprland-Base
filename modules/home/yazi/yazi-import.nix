@@ -8,7 +8,6 @@ let
   #theme = import ./theme.nix;
 in
 {
-  home.file.".config/yazi/theme.toml" = lib.mkForce { source = ./theme.toml; };
 
   programs.yazi = {
     enable = true;
