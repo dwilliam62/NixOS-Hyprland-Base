@@ -5,6 +5,7 @@
       dejavu_fonts
       fira-code
       fira-code-symbols
+      fira-sans
       font-awesome
       hackgen-nf-font
       ibm-plex
@@ -13,18 +14,22 @@
       material-icons
       maple-mono.NF
       minecraftia
-      nerd-fonts.im-writing
-      nerd-fonts.blex-mono
       noto-fonts
-      noto-fonts-emoji
+      nerd-fonts.blex-mono
+      nerd-fonts.caskaydia-cove
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
+      noto-fonts-emoji
+      nerd-fonts.im-writing
+      lilex
+      nerd-fonts.lilex
       noto-fonts-monochrome-emoji
       powerline-fonts
       roboto
       roboto-mono
       symbola
       terminus_font
+      nerd-fonts.jetbrains-mono
       victor-mono
     ];
   };

@@ -10,6 +10,7 @@
     papirus-icon-theme
     bibata-cursors
     adwaita-qt
+    catppuccin-gtk
   ];
 
   # Environment variables as a fallback for apps not honoring gsettings
@@ -35,7 +36,8 @@ system-db:local
     "dconf/db/local.d/00_theme".text = ''
 [org/gnome/desktop/interface]
 color-scheme='prefer-dark'
-gtk-theme='Adwaita-dark'
+# Catppuccin GTK theme (Mocha). Accent may default to Blue in packaged theme.
+gtk-theme='Catppuccin-Mocha-Standard-Blue-Dark'
 icon-theme='Papirus-Dark'
 cursor-theme='Bibata-Modern-Classic'
 '';

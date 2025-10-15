@@ -1,8 +1,7 @@
-{
-  pkgs,
-  inputs,
-  host,
-  ...
+{ pkgs
+, inputs
+, host
+, ...
 }:
 {
 
@@ -10,15 +9,14 @@
     hyprland = {
       enable = true;
       withUWSM = false;
-      #package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; #hyprland-git
-      #portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland; #xdph-git
-
-      portalPackage = pkgs.xdg-desktop-portal-hyprland; # xdph none git
+      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; # hyprland from source
+      portalPackage =
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland; # xdph from source
       xwayland.enable = true;
     };
     zsh.enable = true;
-    firefox.enable = true;
-    waybar.enable = true;
+    firefox.enable = false;
+    waybar.enable = false; # disable systemd user autostart; Hyprland will start Waybar
     hyprlock.enable = true;
     dconf.enable = true;
     seahorse.enable = true;
@@ -32,7 +30,7 @@
     tmux.enable = true;
     nm-applet.indicator = true;
     neovim = {
-      enable = true;
+      enable = false;
       defaultEditor = false;
     };
 
@@ -49,15 +47,16 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    waybar
 
     # Update flkake script
-    (pkgs.writeShellScriptBin "fupdate" ''
+    (pkgs.writeShellScriptBin "update" ''
       cd ~/NixOS-Hyprland
       nh os switch -u -H ${host} .
     '')
 
     # Rebuild flkake script
-    (pkgs.writeShellScriptBin "frebuild" ''
+    (pkgs.writeShellScriptBin "rebuild" ''
       cd ~/NixOS-Hyprland
       nh os switch -H ${host} .
     '')
@@ -65,6 +64,28 @@
     # clean up old generations
     (writeShellScriptBin "ncg" ''
       nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot
+    '')
+
+    # Wfetch Randomizer script
+    (pkgs.writeShellScriptBin "wf" ''
+      # Wfetch Randomizer
+      # Choose between multiple command options randomly
+      # Author: Don Williams
+      # Revision History
+      #==============================================================
+      v0.1      5-15-2025        Initial release
+
+      # Generate a random number (0 to 4)
+      choice=$((RANDOM % 5))
+
+      # Execute one of the five commands based on the random number
+      case "$choice" in
+          0) wfetch --waifu2 --challenge --challenge-years=3 --image-size 300 ;;
+          1) wfetch --waifu --challenge --challenge-years=3 --image-size 300 ;;
+          2) wfetch --challenge --challenge-years=3 --hollow ;;
+          3) wfetch --challenge --challenge-years=3 --wallpaper ;;
+          4) wfetch --challenge --challenge-years=3 --smooth ;;
+      esac
     '')
 
     # Hyprland Stuff
@@ -78,6 +99,8 @@
     mesa
     nwg-displays
     nwg-look
+    nwg-menu
+    nwg-dock-hyprland
     waypaper
     hyprland-qt-support # for hyprland-qt-support
 
@@ -141,18 +164,17 @@
     openssl # required by Rainbow borders
     pciutils
     networkmanagerapplet
-    #nitrogen
-    #nvtopPackages.full
+    nitrogen
     pamixer
     pavucontrol
     playerctl
     #polkit
     # polkit_gnome
     kdePackages.polkit-kde-agent-1
-    # qt6ct
-    #qt6.qtwayland
-    #qt6Packages.qtstyleplugin-kvantum # kvantum
-    # gsettings-qt
+    qt6ct
+    qt6.qtwayland
+    qt6Packages.qtstyleplugin-kvantum # kvantum
+    gsettings-qt
     rofi
     slurp
     swappy
@@ -169,9 +191,12 @@
     yad
     yazi
     yt-dlp
+    zellij
 
     (inputs.quickshell.packages.${pkgs.system}.default)
     (inputs.ags.packages.${pkgs.system}.default)
+    (inputs.ghostty.packages.${pkgs.system}.default)
+    (inputs.wfetch.packages.${pkgs.system}.default)
 
     # Utils
     caligula # burn ISOs at cli FAST
@@ -209,12 +234,21 @@
     mission-center
     neofetch
 
+    # AI
+    warp-terminal
+    warp-bld
+    gemini-cli
+    #opencode
+
     # Development related
     luarocks
     nh
+    lunarvim
+    nixd
 
     # Internet
     discord
+    discord-canary
 
     # Virtuaizaiton
     virt-viewer
@@ -222,11 +256,19 @@
 
     # Video
     vlc
+    #jellyfin-media-player   #Causes failed builds
 
     # Terminals
     kitty
     wezterm
+    ptyxis
+    remmina
 
   ];
 
+  environment.variables = {
+    NIXOS_OZONE_WL = "1";
+    DDUBSOS_VERSION = "JAK-v0.4";
+    DDUBSOS = "true";
+  };
 }

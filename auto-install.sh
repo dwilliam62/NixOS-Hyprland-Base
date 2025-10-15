@@ -27,6 +27,9 @@ BLUE="$(tput setaf 4)"
 SKY_BLUE="$(tput setaf 6)"
 RESET="$(tput sgr0)"
 
+# Set Branch to clone from 
+BRANCH="ddubs-merge"
+
 set -e
 
 # Common installer functions
@@ -84,7 +87,7 @@ fi
 echo "-----"
 
 echo "$NOTE Cloning & Entering NixOS-Hyprland Repository"
-git clone --depth 1 https://github.com/JaKooLit/NixOS-Hyprland.git ~/NixOS-Hyprland
+git clone --depth 1 https://github.cow/dwilliam62/NixOS-Hyprland.git --branch "$BRANCH"  ~/NixOS-Hyprland
 cd ~/NixOS-Hyprland || exit
 
 printf "\n%.0s" {1..2}

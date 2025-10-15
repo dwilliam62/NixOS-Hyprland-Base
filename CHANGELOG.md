@@ -2,6 +2,27 @@
 
 A technical record of notable changes. Dates are in UTC.
 
+## 23 Sep 2025
+
+- Building Hyprland from github source
+- Changed TUI/greetd for ly login mgr w/matrix animation
+- Added warp-terminal via overlay
+- Added custom lazygit config
+- Added custom btop config
+- Added custom bottom config
+- Added custom remmina config
+- Added custom wezterm config
+- Added custom evil-helix config
+- Added custom git config
+- Added catppuccin homemgr module
+- Added doom emacs installer
+- Started moving homemgr modules to subdirs
+- modules/home/cli
+- modules/home/terminals
+- modules/home/editors
+- modules/home/yazi
+- modules/home/shells
+
 ## 19 Sep 2025
 
 - Added
@@ -132,4 +153,3 @@ A technical record of notable changes. Dates are in UTC.
 ### 05 Sept 2024
 
 - Initial Alpha Stage
-
