@@ -53,11 +53,10 @@
   };
 
   outputs =
-    inputs@{
-      self,
-      nixpkgs,
-      ags,
-      ...
+    inputs@{ self
+    , nixpkgs
+    , ags
+    , ...
     }:
     let
       system = "x86_64-linux";
