@@ -102,17 +102,17 @@
         echo "Options (rebuild/update): --dry, --ask, --no-stage, --stage-all"
       }
 
-      confirm() { read -p "Continue (y/N)? " -r; [[ "${REPLY:-}" =~ ^[Yy]$ ]]; }
+      confirm() { read -p "Continue (y/N)? " -r; [[ "''${REPLY:-}" =~ ^[Yy]$ ]]; }
 
       stage_changes() {
-        local mode="${1:-}"
+        local mode="''${1:-}"
         if [[ "$mode" == "--no-stage" ]]; then return 0; fi
         if [[ "$mode" == "--stage-all" ]]; then
           (cd "$FLAKE_DIR" && "$GIT" add -A && "$GIT" status --short)
           return 0
         fi
         read -p "Stage all untracked/unstaged changes in $FLAKE_DIR before proceeding? (y/N) " -r
-        if [[ "${REPLY:-}" =~ ^[Yy]$ ]]; then
+        if [[ "''${REPLY:-}" =~ ^[Yy]$ ]]; then
           (cd "$FLAKE_DIR" && "$GIT" add -A && "$GIT" status --short)
         fi
       }
@@ -134,12 +134,12 @@
         local cmd=(nh os switch -H "$HOST" .)
         if [[ "$mode" == "boot" ]]; then cmd=(nh os boot -H "$HOST" .); fi
         if [[ "$mode" == "update" ]]; then cmd=(nh os switch -u -H "$HOST" .); fi
-        if (( dry )); then echo "(dry-run) in $FLAKE_DIR: ${cmd[*]}"; exit 0; fi
+        if (( dry )); then echo "(dry-run) in $FLAKE_DIR: ''${cmd[*]}"; exit 0; fi
         if (( ask )); then confirm || { echo "Aborted."; exit 1; }; fi
-        (cd "$FLAKE_DIR" && "${cmd[@]}")
+        (cd "$FLAKE_DIR" && "''${cmd[@]}")
       }
 
-      case "${1:-help}" in
+      case "''${1:-help}" in
         help|-h|--help)
           print_help ;;
 
@@ -157,12 +157,12 @@
           read -p "How many generations to keep (empty = keep all but current)? " keep
           LOG_DIR="$HOME/zcli-cleanup-logs"; mkdir -p "$LOG_DIR"
           LOG_FILE="$LOG_DIR/zcli-cleanup-$($DATE +%F_%H-%M-%S).log"
-          if [[ -z "${keep:-}" ]]; then
+          if [[ -z "''${keep:-}" ]]; then
             read -p "Remove all but current generation. Continue (y/N)? " -r; echo
-            if [[ "${REPLY:-}" =~ ^[Yy]$ ]]; then nh clean all -v | tee -a "$LOG_FILE"; else echo "Cancelled."; fi
+            if [[ "''${REPLY:-}" =~ ^[Yy]$ ]]; then nh clean all -v | tee -a "$LOG_FILE"; else echo "Cancelled."; fi
           else
             read -p "Keep last $keep generations. Continue (y/N)? " -r; echo
-            if [[ "${REPLY:-}" =~ ^[Yy]$ ]]; then nh clean all -k "$keep" -v | tee -a "$LOG_FILE"; else echo "Cancelled."; fi
+            if [[ "''${REPLY:-}" =~ ^[Yy]$ ]]; then nh clean all -k "$keep" -v | tee -a "$LOG_FILE"; else echo "Cancelled."; fi
           fi
           find "$LOG_DIR" -type f -mtime +3 -name "*.log" -delete >/dev/null 2>&1 || true ;;
 
@@ -175,7 +175,7 @@
           sudo "$FSTRIM" -v / ;;
 
         update-host)
-          target="${2-}"
+          target="''${2-}"
           if [[ -z "$target" ]]; then read -p "Enter hostname to set in flake.nix: " target; fi
           if [[ -z "$target" ]]; then echo "No hostname provided."; exit 1; fi
           if [[ ! -f "$FLAKE_NIX" ]]; then echo "flake.nix not found at $FLAKE_NIX"; exit 1; fi
@@ -187,14 +187,14 @@
 
         stage)
           shift || true
-          if [[ "${1-}" == "--all" || "${1-}" == "--stage-all" ]]; then
+          if [[ "''${1-}" == "--all" || "''${1-}" == "--stage-all" ]]; then
             (cd "$FLAKE_DIR" && "$GIT" add -A && "$GIT" status)
           else
             stage_changes ""
           fi ;;
 
         doom)
-          sub="${2-status}"
+          sub="''${2-status}"
           case "$sub" in
             upgrade)
               if [[ -x "$HOME/.emacs.d/bin/doom" ]]; then
@@ -210,7 +210,7 @@
             stop) systemctl --user stop emacs.service ;;
             restart) systemctl --user restart emacs.service ;;
             logs)
-              n="${3-200}"; follow="${4-}"
+              n="''${3-200}"; follow="''${4-}"
               if [[ "$follow" == "-f" || "$follow" == "--follow" ]]; then
                 journalctl --user -u emacs.service -f
               else
