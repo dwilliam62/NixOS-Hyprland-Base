@@ -1,6 +1,6 @@
 <div align="center">
 
-# 💌 ** KooL's ❄️ NixOS-Hyprland Install Script ** 💌
+# 💌 ** ddubs' ❄️ NixOS-Hyprland Install Script ** 💌
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/assets/latte.png" width="400" />
@@ -75,10 +75,6 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 <div id="announcement">
 
 - ** This Repo does not contain Hyprland Dots or configs! **
-- ** Configs are NOT written in NIX language **
-- Hyprland Dotfiles will be downloaded from [`KooL's Hyprland-Dots`](https://github.com/JaKooLit/Hyprland-Dots)
-- The Hyprland-Dots used are constantly evolving / improving
-- You can check CHANGELOGS here [`Hyprland-Dots-Changelogs`](https://github.com/JaKooLit/Hyprland-Dots/wiki/Changelogs) 
 - GTK Themes and Icons will be pulled from [`LINK`](https://github.com/JaKooLit/GTK-themes-icons), including Bibata Cursor Modern Ice
 - The wallpapers offered to be downloaded towards the end are from this [`REPO`](https://github.com/JaKooLit/Wallpaper-Bank)
 
@@ -91,15 +87,12 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 <details>
 <summary><strong>👋 👋 👋 Requirements </strong></summary>
 
-- You must be running on NixOS 23.11+
-- 24.11+ recommended 
+- You must be running on NixOS 24.11+
+- 25.05+ recommended 
 - Minimum space required is 64gb. 128gb is recommended as NixOS is a space-hungry distro
 - Must have installed NIXOS using **GPT partition ** & Boot **UEFI**
-- `/boot` must be at least 512MB.
+- `/boot` must be at least 1GB.
 - Systemd-boot is configured as the default bootloader
-
-> [!TIP]
-> if you use GRUB as bootloader you need to edit `hosts/default/config.nix` before install and `flake.nix` for additional grub themes
 
 </details>
 <details>
@@ -128,7 +121,7 @@ https://github.com/user-attachments/assets/49bc12b2-abaf-45de-a21c-67aacd9bb872
 - If you decided NOT to move the directories stated above, then you can rebuild with
  
 ```
-sudo nixos-rebuild switch --flake ~/NixOS-Hyprland/#<hostName>
+sudo nixos-rebuild switch --flake ~/NixOS-Hyprland-Base/#<hostName>
 ```
 </details>
 
@@ -158,7 +151,7 @@ sudo nixos-rebuild switch --flake ~/NixOS-Hyprland/#<hostName>
 - Simply copy this and run it:
 ```
 nix-shell -p git vim curl pciutils
-sh <(curl -L https://github.com/JaKooLit/NixOS-Hyprland/raw/main/auto-install.sh)
+sh <(curl -L https://github.com/dwilliam62/NixOS-Hyprland-Base/raw/main/auto-install.sh)
 ```
 > [!NOTE]
 > pciutils is necessary to detect if you have an Nvidia card. 
@@ -176,7 +169,7 @@ nix-shell -p git vim curl pciutils
 ```
 - Clone this repo & CD into it:
 ```
-git clone --depth 1 https://github.com/JaKooLit/NixOS-Hyprland.git ~/NixOS-Hyprland
+git clone --depth 1 https://github.com/dwilliam6/NixOS-Hyprland-Base.git ~/NixOS-Hyprland
 cd ~/NixOS-Hyprland
 ```
 - *You should stay in this directory for the rest of the install*
@@ -237,8 +230,6 @@ Hope you enjoy! 🎉
 - You can set GTK themes, icons, and the cursor, using nwg-look
 </details>
 
-🪤 My NixOS configs 
-- on this repo [`KooL's NIXOS Configs`](https://github.com/JaKooLit/NixOS-configs)
 
 🎞️ AGS Overview DEMO
 - in case you wonder, here is a short demo of AGS overview [Youtube LINK](https://youtu.be/zY5SLNPBJTs)
@@ -290,31 +281,3 @@ Hope you enjoy! 🎉
 
 </div>
 
-<details>
-<summary><strong>💖 Support </strong></summary>
-    
-- a Star on my Github repos would be nice 🌟
-
-- Subscribe to my Youtube Channel [YouTube](https://www.youtube.com/@Ja.KooLit) 
-
-- you can also give support through coffee's or btc 😊
-
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/jakoolit)
-
-or
-
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/JaKooLit)
-
-Or you can donate cryto on my btc wallet :)  
-> 1N3MeV2dsX6gQB42HXU6MF2hAix1mqjo8i
-
-![Bitcoin](https://github.com/user-attachments/assets/7ed32f8f-c499-46f0-a53c-3f6fbd343699)
-
-</details>
-<details>
-<summary><strong> 📹 Youtube videos (Click to view and watch the playlist) 📹 </strong></summary>
-[![Youtube Playlist Thumbnail](https://raw.githubusercontent.com/JaKooLit/screenshots/main/Youtube.png)](https://youtube.com/playlist?list=PLDtGd5Fw5_GjXCznR0BzCJJDIQSZJRbxx&si=iaNjLulFdsZ6AV-t)
-</details>
-
-🥰🥰 💖💖 👍👍👍
-[![Stargazers over time](https://starchart.cc/JaKooLit/NixOS-Hyprland.svg?variant=adaptive)](https://starchart.cc/JaKooLit/NixOS-Hyprland)
