@@ -148,7 +148,7 @@ in
       lsp = {
         enable = true;
         servers = {
-          nil_ls.enable = true;
+          nixd.enable = true;
           lua_ls.enable = true;
           pyright.enable = true;
           ts_ls.enable = true;
@@ -304,7 +304,7 @@ in
       # Wayland clipboard provider used by Neovim for system clipboard access
       wl-clipboard
       lazygit
-      nil
+      nixd
       hyprls
       nodePackages.typescript-language-server
       nodePackages.typescript

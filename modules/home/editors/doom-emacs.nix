@@ -17,7 +17,7 @@
     nixfmt-rfc-style
     # LSP servers
     clang-tools # C/C++ LSP
-    nil # Nix LSP
+    nixd # Nix LSP
 
     # TTY wrapper: prefer truecolor by using xterm-direct / tmux-direct when available
     (writeShellScriptBin "et" ''
@@ -206,10 +206,9 @@
       (setq lsp-signature-auto-activate t
             lsp-signature-render-documentation t
             lsp-completion-provider :company-capf
-            lsp-idle-delay 0.1))
-
-    (with-eval-after-load 'lsp-nix-nil
-      (setq lsp-nix-nil-auto-eval-inputs t))
+            lsp-idle-delay 0.1)
+      ;; Prefer nixd over nil
+      (add-to-list 'lsp-disabled-clients 'nil))
 
     (after! company
       (setq company-idle-delay 0.2
