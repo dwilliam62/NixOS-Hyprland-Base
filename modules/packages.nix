@@ -66,6 +66,164 @@
       nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot
     '')
 
+    # zcli: NixOS management helper
+    (pkgs.writeShellScriptBin "zcli" ''
+      #!${pkgs.bash}/bin/bash
+      set -euo pipefail
+
+      PROJECT="NixOS-Hyprland"
+      FLAKE_DIR="$HOME/$PROJECT"
+      FLAKE_NIX="$FLAKE_DIR/flake.nix"
+      HOST="${host}"
+
+      GREP="${pkgs.gnugrep}/bin/grep"
+      SED="${pkgs.gnused}/bin/sed"
+      INXI="${pkgs.inxi}/bin/inxi"
+      FSTRIM="${pkgs.util-linux}/bin/fstrim"
+      GIT="${pkgs.git}/bin/git"
+      DATE="${pkgs.coreutils}/bin/date"
+
+      print_help() {
+        echo "zcli - NixOS management"
+        echo ""
+        echo "Usage: zcli <command> [options]"
+        echo ""
+        echo "Commands:"
+        echo "  rebuild [opts]       Rebuild and switch (nh os switch)"
+        echo "  rebuild-boot [opts]  Build for next boot (nh os boot)"
+        echo "  update|upgrade       Flake update + switch"
+        echo "  cleanup              Interactive cleanup of old generations"
+        echo "  diag                 Write system report to ~/diag.txt"
+        echo "  trim                 Run fstrim -v / (sudo)"
+        echo "  update-host [host]   Set 'host' in flake.nix"
+        echo "  stage [--all]        Stage changes in repo before rebuild"
+        echo "  doom <sub>           Manage Doom Emacs (upgrade/status/start/stop/restart/logs)"
+        echo ""
+        echo "Options (rebuild/update): --dry, --ask, --no-stage, --stage-all"
+      }
+
+      confirm() { read -p "Continue (y/N)? " -r; [[ "${REPLY:-}" =~ ^[Yy]$ ]]; }
+
+      stage_changes() {
+        local mode="${1:-}"
+        if [[ "$mode" == "--no-stage" ]]; then return 0; fi
+        if [[ "$mode" == "--stage-all" ]]; then
+          (cd "$FLAKE_DIR" && "$GIT" add -A && "$GIT" status --short)
+          return 0
+        fi
+        read -p "Stage all untracked/unstaged changes in $FLAKE_DIR before proceeding? (y/N) " -r
+        if [[ "${REPLY:-}" =~ ^[Yy]$ ]]; then
+          (cd "$FLAKE_DIR" && "$GIT" add -A && "$GIT" status --short)
+        fi
+      }
+
+      run_rebuild() {
+        local mode="$1"; shift || true
+        local dry=0 ask=0 stage_flag=""
+        while [[ $# -gt 0 ]]; do
+          case "$1" in
+            -n|--dry) dry=1 ;;
+            -a|--ask) ask=1 ;;
+            --no-stage) stage_flag="--no-stage" ;;
+            --stage-all) stage_flag="--stage-all" ;;
+            --cores|*-j|--no-nom|-v|--verbose) shift; continue ;; # ignored
+          esac
+          shift || true
+        done
+        stage_changes "$stage_flag"
+        local cmd=(nh os switch -H "$HOST" .)
+        if [[ "$mode" == "boot" ]]; then cmd=(nh os boot -H "$HOST" .); fi
+        if [[ "$mode" == "update" ]]; then cmd=(nh os switch -u -H "$HOST" .); fi
+        if (( dry )); then echo "(dry-run) in $FLAKE_DIR: ${cmd[*]}"; exit 0; fi
+        if (( ask )); then confirm || { echo "Aborted."; exit 1; }; fi
+        (cd "$FLAKE_DIR" && "${cmd[@]}")
+      }
+
+      case "${1:-help}" in
+        help|-h|--help)
+          print_help ;;
+
+        rebuild)
+          shift || true; run_rebuild switch "$@" ;;
+
+        rebuild-boot)
+          shift || true; run_rebuild boot "$@" ;;
+
+        update|upgrade)
+          shift || true; run_rebuild update "$@" ;;
+
+        cleanup)
+          echo "Warning! This will remove old generations."
+          read -p "How many generations to keep (empty = keep all but current)? " keep
+          LOG_DIR="$HOME/zcli-cleanup-logs"; mkdir -p "$LOG_DIR"
+          LOG_FILE="$LOG_DIR/zcli-cleanup-$($DATE +%F_%H-%M-%S).log"
+          if [[ -z "${keep:-}" ]]; then
+            read -p "Remove all but current generation. Continue (y/N)? " -r; echo
+            if [[ "${REPLY:-}" =~ ^[Yy]$ ]]; then nh clean all -v | tee -a "$LOG_FILE"; else echo "Cancelled."; fi
+          else
+            read -p "Keep last $keep generations. Continue (y/N)? " -r; echo
+            if [[ "${REPLY:-}" =~ ^[Yy]$ ]]; then nh clean all -k "$keep" -v | tee -a "$LOG_FILE"; else echo "Cancelled."; fi
+          fi
+          find "$LOG_DIR" -type f -mtime +3 -name "*.log" -delete >/dev/null 2>&1 || true ;;
+
+        diag)
+          OUT="$HOME/diag.txt"
+          "$INXI" --full --color 0 --filter --no-host > "$OUT" || true
+          echo "Wrote $OUT" ;;
+
+        trim)
+          sudo "$FSTRIM" -v / ;;
+
+        update-host)
+          target="${2-}"
+          if [[ -z "$target" ]]; then read -p "Enter hostname to set in flake.nix: " target; fi
+          if [[ -z "$target" ]]; then echo "No hostname provided."; exit 1; fi
+          if [[ ! -f "$FLAKE_NIX" ]]; then echo "flake.nix not found at $FLAKE_NIX"; exit 1; fi
+          if "$SED" -i "s/^[[:space:]]*host[[:space:]]*=[[:space:]]*\\\".*\\\"/      host = \\\"$target\\\"/" "$FLAKE_NIX"; then
+            echo "Updated host to $target in $FLAKE_NIX"
+          else
+            echo "Failed to update host in $FLAKE_NIX"; exit 1
+          fi ;;
+
+        stage)
+          shift || true
+          if [[ "${1-}" == "--all" || "${1-}" == "--stage-all" ]]; then
+            (cd "$FLAKE_DIR" && "$GIT" add -A && "$GIT" status)
+          else
+            stage_changes ""
+          fi ;;
+
+        doom)
+          sub="${2-status}"
+          case "$sub" in
+            upgrade)
+              if [[ -x "$HOME/.emacs.d/bin/doom" ]]; then
+                systemctl --user stop emacs.service || true
+                "$HOME/.emacs.d/bin/doom" upgrade
+                systemctl --user start emacs.service || true
+              else
+                echo "Doom not found at ~/.emacs.d/bin/doom"
+              fi ;;
+            status)
+              systemctl --user status --no-pager emacs.service || true ;;
+            start) systemctl --user start emacs.service ;;
+            stop) systemctl --user stop emacs.service ;;
+            restart) systemctl --user restart emacs.service ;;
+            logs)
+              n="${3-200}"; follow="${4-}"
+              if [[ "$follow" == "-f" || "$follow" == "--follow" ]]; then
+                journalctl --user -u emacs.service -f
+              else
+                journalctl --user -u emacs.service -n "$n"
+              fi ;;
+            *) echo "Usage: zcli doom [upgrade|status|start|stop|restart|logs]"; exit 1 ;;
+          esac ;;
+
+        *)
+          print_help; exit 1 ;;
+      esac
+    '')
+
     # Wfetch Randomizer script
     (pkgs.writeShellScriptBin "wf" ''
       # Wfetch Randomizer
