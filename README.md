@@ -21,29 +21,6 @@
   <img src="https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/assets/latte.png" width="200" />
 </p>
 
-<div align="center">
-👇 KOOL's Hyprland-Dots related Links 👇
-<br/>
-</div>
-<div align="center">
-<br>
-  <a href="https://github.com/JaKooLit/Hyprland-Dots/tree/NixOS-Dots"><kbd> <br> KooL Hyprland-Dots NixOS repo <br> </kbd></a>&ensp;&ensp;
-  <a href="https://www.youtube.com/playlist?list=PLDtGd5Fw5_GjXCznR0BzCJJDIQSZJRbxx"><kbd> <br> Youtube <br> </kbd></a>&ensp;&ensp;
-  <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki"><kbd> <br> Wiki <br> </kbd></a>&ensp;&ensp;
-  <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki/Keybinds"><kbd> <br> Keybinds <br> </kbd></a>&ensp;&ensp;
-  <a href="https://github.com/JaKooLit/Hyprland-Dots/wiki/FAQ"><kbd> <br> FAQ <br> </kbd></a>&ensp;&ensp;
-  <a href="https://discord.gg/kool-tech-world"><kbd> <br> Discord <br> </kbd></a>
-</div><br>
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/JaKooLit/Hyprland-Dots/main/assets/latte.png" width="200" />
-</p>
-
-<h3 align="center">
-	<img src="https://github.com/JaKooLit/Telegram-Animated-Emojis/blob/main/Activity/Sparkles.webp" alt="Sparkles" width="38" height="38" />
-	KooL Hyprland-Dotfiles Showcase 
-	<img src="https://github.com/JaKooLit/Telegram-Animated-Emojis/blob/main/Activity/Sparkles.webp" alt="Sparkles" width="38" height="38" />
-</h3>
 
 <div align="center">
 
