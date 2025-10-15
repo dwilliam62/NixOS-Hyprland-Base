@@ -1,8 +1,7 @@
-{
-  pkgs,
-  inputs,
-  host,
-  ...
+{ pkgs
+, inputs
+, host
+, ...
 }:
 {
 
@@ -100,6 +99,8 @@
     mesa
     nwg-displays
     nwg-look
+    nwg-menu
+    nwg-dock-hyprland
     waypaper
     hyprland-qt-support # for hyprland-qt-support
 
@@ -243,6 +244,7 @@
     luarocks
     nh
     lunarvim
+    nixd
 
     # Internet
     discord

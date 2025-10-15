@@ -107,29 +107,7 @@
                 # Import your copied HM modules
                 imports = [
                   inputs.catppuccin.homeModules.catppuccin
-
-                  ./modules/home/terminals/tmux.nix
-                  #./modules/home/terminals/kitty.nix
-                  ./modules/home/terminals/remmina.nix
-                  ./modules/home/terminals/wezterm.nix
-                  ./modules/home/yazi/yazi-import.nix
-                  ./modules/home/editors/doom-emacs-install.nix
-                  ./modules/home/editors/doom-emacs.nix
-                  ./modules/home/editors/evil-helix.nix
-                  ./modules/home/editors/nixvim.nix
-                  ./modules/home/cli/bat.nix
-                  ./modules/home/cli/btop.nix
-                  ./modules/home/cli/bottom.nix
-                  ./modules/home/cli/cava.nix
-                  ./modules/home/cli/fzf.nix
-                  ./modules/home/cli/git.nix
-                  ./modules/home/cli/htop.nix
-                  ./modules/home/cli/lazygit.nix
-                  ./modules/home/cli/tealdeer.nix
-                  ./modules/home/fastfetch/fastfetch-import.nix
-                  ./modules/home/shells/eza.nix
-                  ./modules/home/shells/fish.nix
-                  ./modules/home/shells/zoxide.nix
+                  ./modules/home/default.nix
                 ];
 
                 # Global Catppuccin theme for this user via Home Manager

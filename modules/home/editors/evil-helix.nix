@@ -23,6 +23,12 @@
   ];
 
   home.file.".config/helix/languages.toml".text = ''
+    [[language]]
+    name = "nix"
+
+    [language-server.nix]
+    command = "nixd"
+
     [language-server.nil]
     command = "nil"
 
