@@ -10,6 +10,7 @@
     marksman
     taplo
     nil
+    nixd
     jq-lsp
     vscode-langservers-extracted
     bash-language-server

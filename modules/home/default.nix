@@ -10,6 +10,7 @@
     ./editors/doom-emacs-install.nix
     ./editors/doom-emacs.nix
     ./editors/nixvim.nix
+    ./editors/evil-helix.nix
     ./cli/bat.nix
     ./cli/btop.nix
     ./cli/bottom.nix
