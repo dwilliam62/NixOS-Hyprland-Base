@@ -60,7 +60,7 @@
     }:
     let
       system = "x86_64-linux";
-      host = "ddubs-merge";
+      host = "macbook";
       username = "dwilliams";
 
       pkgs = import nixpkgs {
