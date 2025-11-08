@@ -5,7 +5,7 @@
     ./terminals/tmux.nix
     #./terminals/kitty.nix   # Will set catppuccin theme
     ./terminals/remmina.nix
-    ./terminals/wezterm.nix
+    #./terminals/wezterm.nix
     ./yazi/yazi-import.nix
     ./editors/doom-emacs-install.nix
     ./editors/doom-emacs.nix

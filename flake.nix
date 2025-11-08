@@ -60,7 +60,7 @@
     }:
     let
       system = "x86_64-linux";
-      host = "macbook";
+      host = "ddubs-merge";
       username = "dwilliams";
 
       pkgs = import nixpkgs {
@@ -87,7 +87,7 @@
             ./modules/portals.nix # portal
             ./modules/theme.nix # Set dark theme
             ./modules/ly.nix # Centralized ly display manager config
-            ./modules/overlays.nix # Overlay exposing warp-bld wrapper
+            #./modules/overlays.nix # Overlay exposing warp-bld wrapper
             inputs.catppuccin.nixosModules.catppuccin
 
             # Integrate Home Manager as a NixOS module

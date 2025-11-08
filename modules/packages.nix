@@ -329,7 +329,7 @@
     #polkit
     # polkit_gnome
     kdePackages.polkit-kde-agent-1
-    qt6ct
+    qt6Packages.qt6ct
     qt6.qtwayland
     qt6Packages.qtstyleplugin-kvantum # kvantum
     gsettings-qt
@@ -394,7 +394,7 @@
 
     # AI
     warp-terminal
-    warp-bld
+    #warp-bld
     gemini-cli
     #opencode
 
