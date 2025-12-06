@@ -351,7 +351,7 @@
     yt-dlp
     zellij
 
-    (inputs.quickshell.packages.${pkgs.system}.default)
+    #(inputs.quickshell.packages.${pkgs.system}.default)
     (inputs.ags.packages.${pkgs.system}.default)
     (inputs.ghostty.packages.${pkgs.system}.default)
     (inputs.wfetch.packages.${pkgs.system}.default)
@@ -414,7 +414,6 @@
 
     # Video
     vlc
-    #jellyfin-media-player   #Causes failed builds
 
     # Terminals
     kitty
