@@ -250,7 +250,7 @@
     hypridle
     hyprpolkitagent
     pyprland
-    #uwsm
+    uwsm
     hyprlang
     hyprshot
     hyprcursor
