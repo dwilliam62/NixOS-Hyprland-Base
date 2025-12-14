@@ -9,6 +9,7 @@
     home-manager.url = "github:nix-community/home-manager/release-25.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.url = "github:nix-community/nixvim/nixos-25.11";
+    alejandra.url = "github:kamadorueda/alejandra";
 
     ghostty = {
       type = "github";
@@ -50,6 +51,7 @@
   outputs =
     inputs@{ self
     , nixpkgs
+    , alejandra
     , ags
     , ...
     }:
@@ -117,5 +119,7 @@
           ];
         };
       };
+      # Code formatter
+      formatter.x86_64-linux = alejandra.defaultPackage.x86_64-linux;
     };
 }
