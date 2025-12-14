@@ -44,9 +44,13 @@
   };
   nixpkgs.config.allowUnfree = true;
 
+  # Enable Power Profiles daemon
+  services.power-profiles-daemon.enable = true;
+
   environment.systemPackages = with pkgs; [
     alejandra
     waybar
+    power-profiles-daemon
 
     # Update flkake script
     (pkgs.writeShellScriptBin "update" ''
