@@ -1,13 +1,12 @@
 # 💫 https://github.com/JaKooLit 💫 #
 # Variables
-
 {
   # Git Configuration ( For Pulling Software Repos )
   gitUsername = "Don Williams";
   gitEmail = "Don.E.Williams@gmail.com";
 
   # Hyprland Settings
-  extraMonitorSettings ="
+  extraMonitorSettings = "
 
   monitor=Virtual-1,1920x1080@60,auto,auto
   ";

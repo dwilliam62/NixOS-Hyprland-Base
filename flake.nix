@@ -48,78 +48,76 @@
     };
   };
 
-  outputs =
-    inputs@{ self
-    , nixpkgs
-    , alejandra
-    , ags
-    , ...
-    }:
-    let
-      system = "x86_64-linux";
-      host = "ddubs-merge";
-      username = "dwilliams";
+  outputs = inputs @ {
+    self,
+    nixpkgs,
+    alejandra,
+    ags,
+    ...
+  }: let
+    system = "x86_64-linux";
+    host = "ddubs-merge";
+    username = "dwilliams";
 
-      pkgs = import nixpkgs {
-        inherit system;
-        config = {
-          allowUnfree = true;
-        };
+    pkgs = import nixpkgs {
+      inherit system;
+      config = {
+        allowUnfree = true;
       };
-    in
-    {
-      nixosConfigurations = {
-        "${host}" = nixpkgs.lib.nixosSystem rec {
-          specialArgs = {
-            inherit system;
-            inherit inputs;
-            inherit username;
-            inherit host;
-          };
-          modules = [
-            ./hosts/${host}/config.nix
-            ./modules/quickshell.nix # quickshell module
-            ./modules/packages.nix # Software packages
-            ./modules/fonts.nix # Fonts packages
-            ./modules/portals.nix # portal
-            ./modules/theme.nix # Set dark theme
-            ./modules/ly.nix # Centralized ly display manager config
-            #./modules/overlays.nix # Overlay exposing warp-bld wrapper
-            inputs.catppuccin.nixosModules.catppuccin
-
-            # Integrate Home Manager as a NixOS module
-            inputs.home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-
-              # Ensure HM modules can access flake inputs (e.g., inputs.nixvim)
-              home-manager.extraSpecialArgs = { inherit inputs system username host; };
-
-              home-manager.users.${username} = {
-                home.username = username;
-                home.homeDirectory = "/home/${username}";
-                home.stateVersion = "24.05";
-
-                # Import your copied HM modules
-                imports = [
-                  inputs.catppuccin.homeModules.catppuccin
-                  ./modules/home/default.nix
-                ];
-
-                # Global Catppuccin theme for this user via Home Manager
-                catppuccin = {
-                  enable = true;
-                  flavor = "mocha";
-                };
-
-                # Leave zsh in NixOS; HM will manage user-level tools progressively
-              };
-            }
-          ];
-        };
-      };
-      # Code formatter
-      formatter.x86_64-linux = alejandra.defaultPackage.x86_64-linux;
     };
+  in {
+    nixosConfigurations = {
+      "${host}" = nixpkgs.lib.nixosSystem rec {
+        specialArgs = {
+          inherit system;
+          inherit inputs;
+          inherit username;
+          inherit host;
+        };
+        modules = [
+          ./hosts/${host}/config.nix
+          ./modules/quickshell.nix # quickshell module
+          ./modules/packages.nix # Software packages
+          ./modules/fonts.nix # Fonts packages
+          ./modules/portals.nix # portal
+          ./modules/theme.nix # Set dark theme
+          ./modules/ly.nix # Centralized ly display manager config
+          #./modules/overlays.nix # Overlay exposing warp-bld wrapper
+          inputs.catppuccin.nixosModules.catppuccin
+
+          # Integrate Home Manager as a NixOS module
+          inputs.home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+
+            # Ensure HM modules can access flake inputs (e.g., inputs.nixvim)
+            home-manager.extraSpecialArgs = {inherit inputs system username host;};
+
+            home-manager.users.${username} = {
+              home.username = username;
+              home.homeDirectory = "/home/${username}";
+              home.stateVersion = "24.05";
+
+              # Import your copied HM modules
+              imports = [
+                inputs.catppuccin.homeModules.catppuccin
+                ./modules/home/default.nix
+              ];
+
+              # Global Catppuccin theme for this user via Home Manager
+              catppuccin = {
+                enable = true;
+                flavor = "mocha";
+              };
+
+              # Leave zsh in NixOS; HM will manage user-level tools progressively
+            };
+          }
+        ];
+      };
+    };
+    # Code formatter
+    formatter.x86_64-linux = alejandra.defaultPackage.x86_64-linux;
+  };
 }

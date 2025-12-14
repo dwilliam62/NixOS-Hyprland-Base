@@ -1,5 +1,8 @@
-{ pkgs, lib, ... }:
 {
+  pkgs,
+  lib,
+  ...
+}: {
   home.packages = with pkgs; [
     emacs-pgtk
     git
@@ -78,7 +81,7 @@
   };
 
   # Ensure Doom Emacs is installed and synchronized on each Home Manager activation
-  home.activation.doomSync = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+  home.activation.doomSync = lib.hm.dag.entryAfter ["writeBoundary"] ''
     set -eu
     EMACSDIR="$HOME/.emacs.d"
     if [ ! -x "$EMACSDIR/bin/doom" ]; then
@@ -259,10 +262,10 @@
   '';
 
   # Put doom's bin on PATH for convenience
-  home.sessionPath = [ "$HOME/.emacs.d/bin" ];
+  home.sessionPath = ["$HOME/.emacs.d/bin"];
 
   # Ensure truecolor is advertised to Emacs (improves TTY theme fidelity)
-  home.sessionVariables = { COLORTERM = "truecolor"; };
+  home.sessionVariables = {COLORTERM = "truecolor";};
 
   home.file.".doom.d/packages.el".text = ''
     ;;; packages.el -*- lexical-binding: t; -*-

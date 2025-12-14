@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   programs.fastfetch = {
     enable = true;
 
@@ -170,8 +169,8 @@
   # These are small scripts built from neighboring nix expressions
   # and installed via home.packages.
   home.packages = [
-    (import ./ff.nix { inherit pkgs; })
-    (import ./ff1.nix { inherit pkgs; })
-    (import ./ff2.nix { inherit pkgs; })
+    (import ./ff.nix {inherit pkgs;})
+    (import ./ff1.nix {inherit pkgs;})
+    (import ./ff2.nix {inherit pkgs;})
   ];
 }

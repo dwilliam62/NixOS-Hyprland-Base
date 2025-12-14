@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   # Ensure dconf is available for system defaults
   programs.dconf.enable = true;
 
@@ -30,23 +32,23 @@
   # Users can still override per-user via gsettings.
   environment.etc = {
     "dconf/profile/user".text = ''
-user-db:user
-system-db:local
-'';
+      user-db:user
+      system-db:local
+    '';
     "dconf/db/local.d/00_theme".text = ''
-[org/gnome/desktop/interface]
-color-scheme='prefer-dark'
-# Catppuccin GTK theme (Mocha). Accent may default to Blue in packaged theme.
-gtk-theme='Catppuccin-Mocha-Standard-Blue-Dark'
-icon-theme='Papirus-Dark'
-cursor-theme='Bibata-Modern-Classic'
-'';
+      [org/gnome/desktop/interface]
+      color-scheme='prefer-dark'
+      # Catppuccin GTK theme (Mocha). Accent may default to Blue in packaged theme.
+      gtk-theme='Catppuccin-Mocha-Standard-Blue-Dark'
+      icon-theme='Papirus-Dark'
+      cursor-theme='Bibata-Modern-Classic'
+    '';
   };
 
   # Rebuild the dconf database at activation to apply system defaults
   system.activationScripts.dconfUpdate = {
     # Ensure /etc is populated (including /etc/dconf/...) before running dconf update
-    deps = [ "etc" ];
+    deps = ["etc"];
     text = ''
       if [ -x ${pkgs.dconf}/bin/dconf ]; then
         if [ -d /etc/dconf/db ]; then

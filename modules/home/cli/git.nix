@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{lib, ...}: {
   # 1. Main Git Configuration
   programs.git = {
     enable = true;

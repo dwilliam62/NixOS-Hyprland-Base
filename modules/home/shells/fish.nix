@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{lib, ...}: {
   programs.fish = {
     enable = true;
     shellAliases = {

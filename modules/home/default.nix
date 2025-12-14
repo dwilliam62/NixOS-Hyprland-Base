@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{...}: {
   imports = [
     ./terminals/tmux.nix
     #./terminals/kitty.nix   # Will set catppuccin theme
@@ -25,6 +23,4 @@
     ./shells/fish.nix
     ./shells/zoxide.nix
   ];
-
 }
-

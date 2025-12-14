@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   # Enabled by default; importing this module applies Helix + LSP setup
   home.packages = with pkgs; [
     evil-helix

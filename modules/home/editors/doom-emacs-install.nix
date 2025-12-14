@@ -1,12 +1,9 @@
-{ pkgs, ... }:
-
-let
+{pkgs, ...}: let
   doom-icon = pkgs.fetchurl {
     url = "https://raw.githubusercontent.com/jeetelongname/doom-banners/master/splashes/doom/doom-emacs-color2.svg";
     sha256 = "1xxi5ra1z8njsqaqiaq96wyn1sc967l42kvjzbji1zrjj8za6bgq";
   };
-in
-{
+in {
   # Provide a convenience installer script if Doom isn't present yet
   home.packages = [
     (pkgs.writeShellScriptBin "get-doom" ''
@@ -51,7 +48,7 @@ in
   ];
 
   # Add Doom's bin dir to PATH
-  home.sessionPath = [ "$HOME/.emacs.d/bin" ];
+  home.sessionPath = ["$HOME/.emacs.d/bin"];
 
   # Desktop entry
   xdg.desktopEntries.doom-emacs = {
@@ -61,6 +58,6 @@ in
     icon = doom-icon;
     terminal = false;
     type = "Application";
-    categories = [ "Development" "TextEditor" ];
+    categories = ["Development" "TextEditor"];
   };
 }
