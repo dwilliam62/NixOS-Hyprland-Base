@@ -47,6 +47,7 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    alejandra
     waybar
 
     # Update flkake script
@@ -58,7 +59,7 @@
     # Rebuild flkake script
     (pkgs.writeShellScriptBin "rebuild" ''
       cd ~/NixOS-Hyprland
-      nh os switch -H ${host} .
+      nh os boot -H ${host} .
     '')
 
     # clean up old generations
