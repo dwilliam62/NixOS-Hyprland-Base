@@ -442,5 +442,5 @@ in {
   };
 
   # Ensure the wrapped nixvim package (with plugin runtimepath) is installed
-  home.packages = [ config.programs.nixvim.finalPackage ];
+  home.packages = [ config.programs.nixvim.build.package ];
 }
