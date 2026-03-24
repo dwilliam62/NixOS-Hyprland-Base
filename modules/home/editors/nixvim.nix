@@ -328,6 +328,9 @@ in {
 
     # Diagnostic UI and notify background tweaks
     extraConfigLua = ''
+      -- Ensure nvim-treesitter is on runtimepath even if packpath isn't picked up
+      vim.opt.rtp:prepend("${pkgs.vimPlugins.nvim-treesitter}")
+      vim.opt.packpath:prepend("${pkgs.vimPlugins.nvim-treesitter}")
       -- Inline diagnostics (virtual text) similar to NVF virtual_lines
       vim.diagnostic.config({
         virtual_text = { prefix = "●", spacing = 2 },
