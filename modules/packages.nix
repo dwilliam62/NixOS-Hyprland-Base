@@ -1,8 +1,7 @@
-{
-  pkgs,
-  inputs,
-  host,
-  ...
+{ pkgs
+, inputs
+, host
+, ...
 }: {
   programs = {
     hyprland = {
@@ -320,7 +319,7 @@
     libnotify
     libsForQt5.qtstyleplugin-kvantum # kvantum
     libsForQt5.qt5ct
-    (mpv.override {scripts = [mpvScripts.mpris];}) # with tray
+    (mpv.override { scripts = [ mpvScripts.mpris ]; }) # with tray
     nvtopPackages.full
     openssl # required by Rainbow borders
     pciutils
@@ -390,10 +389,8 @@
     cpu-x
     #gsmartcontrol
     smartmontools
-    light
     lm_sensors
     mission-center
-    neofetch
 
     # AI
     warp-terminal
@@ -404,7 +401,6 @@
     # Development related
     luarocks
     nh
-    lunarvim
     nixd
 
     # Internet
