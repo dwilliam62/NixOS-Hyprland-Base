@@ -7,9 +7,8 @@
     hyprland = {
       enable = true;
       withUWSM = false;
-      package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland; # hyprland from source
-      portalPackage =
-        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland; # xdph from source
+      package = pkgs.hyprland; # nixpkgs release
+      portalPackage = pkgs.xdg-desktop-portal-hyprland; # nixpkgs release
       xwayland.enable = true;
     };
     zsh.enable = true;
