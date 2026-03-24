@@ -13,7 +13,6 @@ in {
 
   programs.nixvim = {
     enable = true;
-    package = inputs.nixvim.packages.${pkgs.stdenv.hostPlatform.system}.nixvim;
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
