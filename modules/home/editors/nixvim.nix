@@ -443,4 +443,8 @@ in {
 
   # Ensure the wrapped nixvim package (with plugin runtimepath) is installed
   home.packages = [ config.programs.nixvim.build.package ];
+
+  # Fallback: install treesitter plugin into standard packpath for plain nvim on remote VM
+  home.file.".local/share/nvim/site/pack/nixvim/start/nvim-treesitter".source =
+    pkgs.vimPlugins.nvim-treesitter;
 }
