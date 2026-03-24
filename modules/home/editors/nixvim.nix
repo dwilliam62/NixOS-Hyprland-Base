@@ -446,8 +446,8 @@ in {
 
   # Fallback: force treesitter plugin into standard packpath for plain nvim
   home.activation.nvimTreesitterPack = lib.hm.dag.entryAfter ["writeBoundary"] ''
-    mkdir -p "$HOME/.local/share/nvim/site/pack/nixvim/start"
+    mkdir -p "${config.home.homeDirectory}/.local/share/nvim/site/pack/nixvim/start"
     ln -sfn ${pkgs.vimPlugins.nvim-treesitter} \
-      "$HOME/.local/share/nvim/site/pack/nixvim/start/nvim-treesitter"
+      "${config.home.homeDirectory}/.local/share/nvim/site/pack/nixvim/start/nvim-treesitter"
   '';
 }
