@@ -22,6 +22,11 @@ in {
       maplocalleader = " ";
     };
 
+    # Defensive: ensure treesitter plugin is present even if runtimepath isn't fully managed
+    extraPlugins = with pkgs.vimPlugins; [
+      nvim-treesitter
+    ];
+
     # Core editor options
     opts = {
       number = true;
