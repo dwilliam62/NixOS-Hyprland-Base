@@ -33,8 +33,8 @@
     };
 
     thunar.enable = true;
-    thunar.plugins = with pkgs.xfce; [
-      exo
+    thunar.plugins = with pkgs; [
+      xfce4-exo
       mousepad
       thunar-archive-plugin
       thunar-volman
@@ -353,10 +353,10 @@
     yt-dlp
     zellij
 
-    #(inputs.quickshell.packages.${pkgs.system}.default)
-    (inputs.ags.packages.${pkgs.system}.default)
-    (inputs.ghostty.packages.${pkgs.system}.default)
-    (inputs.wfetch.packages.${pkgs.system}.default)
+    #(inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default)
+    (inputs.ags.packages.${pkgs.stdenv.hostPlatform.system}.default)
+    (inputs.ghostty.packages.${pkgs.stdenv.hostPlatform.system}.default)
+    (inputs.wfetch.packages.${pkgs.stdenv.hostPlatform.system}.default)
 
     # Utils
     caligula # burn ISOs at cli FAST

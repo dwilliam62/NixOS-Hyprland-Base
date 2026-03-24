@@ -2,6 +2,7 @@
   # 1. Main Git Configuration
   programs.git = {
     enable = true;
+    signing.format = null;
 
     # userEmail and userName comments remain...
 

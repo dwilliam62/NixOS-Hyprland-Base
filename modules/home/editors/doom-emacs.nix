@@ -17,7 +17,7 @@
     hunspellDicts.en_AU
     hunspellDicts.es_ES
     # Nix tooling
-    nixfmt-rfc-style
+    nixfmt
     # LSP servers
     clang-tools # C/C++ LSP
     nixd # Nix LSP
