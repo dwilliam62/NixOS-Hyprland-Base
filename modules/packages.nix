@@ -338,7 +338,7 @@
     slurp
     swappy
     swaynotificationcenter
-    swww
+    awww
     unzip
     wallust
     wdisplays

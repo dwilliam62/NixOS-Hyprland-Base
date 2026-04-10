@@ -54,6 +54,9 @@ in
       settings = {
         flavour = "mocha";
         transparent_background = false;
+        integrations = {
+          lualine = true;
+        };
       };
     };
 
@@ -63,7 +66,7 @@ in
       lualine = {
         enable = true;
         settings = {
-          options = { theme = "catppuccin"; };
+          options = { theme = "auto"; };
         };
       };
       bufferline.enable = true;
